@@ -53,37 +53,132 @@ const runners = [{"id":1,"first_name":"Charmain","last_name":"Seiler","email":"c
 {"id":49,"first_name":"Bel","last_name":"Alway","email":"balway1c@ow.ly","shirt_size":"S","company_name":"Voolia","donation":107},
 {"id":50,"first_name":"Shell","last_name":"Baine","email":"sbaine1d@intel.com","shirt_size":"M","company_name":"Gabtype","donation":171}];
 
+
+// Start of instructions from README
+// Use `.forEach()`, `.map()`, `.filter()`, and `.reduce()` to loop over an array with 50 objects in it. The [array-methods.js](assignments/array-methods.js) file contains several challenges built around a fundraising 5K fun run event.
+
+// * [ ] Review the contents of the [array-methods.js](assignments/array-methods.js) file.  
+
+// * [ ] Complete the problems provided to you
+
+// * [ ] Notice the last three problems are up to you to create and solve.  This is an awesome opportunity for you to push your critical thinking about array methods, have fun with it.
+// End of instructions from README
+
+
 // ==== Challenge 1: Use .forEach() ====
 // The event director needs both the first and last names of each runner for their running bibs.  Combine both the first and last names into a new array called fullName. 
-let fullName = [runners.forEach(function(runner) {
-    console.log(runner.first_name + runner.last_name);
-    })
-];
+let fullName = [];
 
-// console.log(runners.first_name + runners.last_name);
-
+runners.forEach(function (names) {
+    let mix = names.first_name + " " + names.last_name;
+    return fullName.push(mix)
+    });
+        
 console.log(fullName);
+
+
 
 // ==== Challenge 2: Use .map() ====
 // The event director needs to have all the runner's first names converted to uppercase because the director BECAME DRUNK WITH POWER. Convert each first name into all caps and log the result
 let allCaps = [];
+
+runners.map(function(runner) {
+   let caps = runner.first_name.toUpperCase();
+    return allCaps.push(caps)
+  })
+
 console.log(allCaps); 
 
 // ==== Challenge 3: Use .filter() ====
 // The large shirts won't be available for the event due to an ordering issue.  Get a list of runners with large sized shirts so they can choose a different size. Return an array named largeShirts that contains information about the runners that have a shirt size of L and log the result
-let largeShirts = [];
+let largeShirts = [filteredLarge = runners.filter(function (runner){
+    return runner.shirt_size === 'L';
+})];
+
 console.log(largeShirts);
+
+
 
 // ==== Challenge 4: Use .reduce() ====
 // The donations need to be tallied up and reported for tax purposes. Add up all the donations into a ticketPriceTotal array and log the result
 let ticketPriceTotal = [];
+
+let donors = [];
+runners.forEach(function(id) {
+  let donation = id.donation;
+  return donors.push(donation);
+})
+const sum = donors.reduce(function(total, amount) {
+    return (total + amount);
+});
+ticketPriceTotal.push(sum);
+
 console.log(ticketPriceTotal);
+ 
 
 // ==== Challenge 5: Be Creative ====
-// Now that you have used .forEach(), .map(), .filter(), and .reduce().  I want you to think of potential problems you could solve given the data set and the 5k fun run theme.  Try to create and then solve 3 unique problems using one or many of the array methods listed above.
+// Now that you have used .forEach(), .map(), .filter(), and .reduce().  I want you to think of potential problems you could solve given the data set and the 5k fun run theme.  
+// Try to create and then solve 3 unique problems using one or many of the array methods listed above.
 
 // Problem 1
+// The organization wants to see all the information on runners that donated more than $100. 
+let topDonors = [filteredDonors = runners.filter(function (topDonor){
+    return topDonor.donation > 100;
+})];
+
+console.log(topDonors);
+
 
 // Problem 2
+// The organization needs to see the total of donations > $100 and < $100. Provide 2 separate functions to 
+
+// Top Total Donors
+let topDonorsTotal = [];
+
+let topDonorTotal = [];
+runners.forEach(function(id) {
+  if (id.donation > 100 ) {
+  let donation = id.donation;
+  return topDonorTotal.push(donation);
+  }
+})
+const sumTop = topDonorTotal.reduce(function(total, amount) {
+    return (total + amount);
+});
+topDonorsTotal.push(sumTop);
+
+console.log(topDonorsTotal);
+
+
+// LOW Total Donors
+
+let lowDonorsTotal = [];
+
+let lowDonorTotal = [];
+runners.forEach(function(id) {
+  if (id.donation < 100 ) {
+  let donation = id.donation;
+  return lowDonorTotal.push(donation);
+  }
+})
+const sumLow = lowDonorTotal.reduce(function(total, amount) {
+    return (total + amount);
+});
+lowDonorsTotal.push(sumLow);
+
+console.log(lowDonorsTotal);
+
 
 // Problem 3
+// The organization needs to re-print bobs for all the runners from the company Skinte. Provide First and Last name for employees fo Skinte
+
+let fullNameSkinte = [];
+
+runners.forEach(function (names) {
+    if (names.company_name === 'Skinte') {
+    let mix = names.first_name + names.last_name;
+    return fullNameSkinte.push(mix)
+    }
+    });
+        
+console.log(fullNameSkinte);
