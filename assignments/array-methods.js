@@ -102,6 +102,7 @@ console.log(largeShirts);
 // ==== Challenge 4: Use .reduce() ====
 // The donations need to be tallied up and reported for tax purposes. Add up all the donations into a ticketPriceTotal array and log the result
 let ticketPriceTotal = [];
+
 let tickets = [];
 runners.map(function(runner) {
     let ticket = runner.donation;
@@ -110,6 +111,7 @@ runners.map(function(runner) {
 const sum = tickets.reduce(function(total, amount) {
     return (total + amount);
 });
+
 ticketPriceTotal.push(sum);
 
 console.log(ticketPriceTotal);
@@ -129,21 +131,22 @@ console.log(topDonors);
 
 
 // Problem 2
-// The organization needs to see the total of donations > $100 and < $100. Provide 2 separate functions to 
+// The organization needs to see the total of donations > $100 and < $100. Provide 2 separate arrays that show their respective totals.
 
 // Top Total Donors
 let topDonorsTotal = [];
 
 let topDonorTotal = [];
-runners.forEach(function(id) {
-  if (id.donation > 100 ) {
-  let donation = id.donation;
-  return topDonorTotal.push(donation);
-  }
-})
+runners.map(function(runner) {
+    if (runner.donation > 100 ) {
+        let donation = runner.donation;
+        return topDonorTotal.push(donation)
+    }});
+
 const sumTop = topDonorTotal.reduce(function(total, amount) {
     return (total + amount);
 });
+
 topDonorsTotal.push(sumTop);
 
 console.log(topDonorsTotal);
@@ -154,15 +157,16 @@ console.log(topDonorsTotal);
 let lowDonorsTotal = [];
 
 let lowDonorTotal = [];
-runners.forEach(function(id) {
-  if (id.donation < 100 ) {
-  let donation = id.donation;
-  return lowDonorTotal.push(donation);
-  }
-})
+runners.map(function(runner) {
+    if (runner.donation < 100 ) {
+        let donation = runner.donation;
+        return lowDonorTotal.push(donation)
+    }});
+
 const sumLow = lowDonorTotal.reduce(function(total, amount) {
     return (total + amount);
 });
+
 lowDonorsTotal.push(sumLow);
 
 console.log(lowDonorsTotal);
